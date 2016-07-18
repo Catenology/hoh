@@ -15,7 +15,7 @@
 		}
 
 		body {
-			background: url(https://dl.dropboxusercontent.com/s/kp0tia5pyig3r31/ref-11.jpg?dl=0);
+			background: url(images/maintenance.jpg);
 			background-size: cover;
 			background-position: center center;
 			background-attachment: fixed;
@@ -118,10 +118,6 @@
 			var minutes = Math.floor((distance % _hour) / _minute);
 			var seconds = Math.floor((distance % _minute) / _second);
 
-			// document.getElementById(id).innerHTML = days + ' DAYS ';
-			// document.getElementById(id).innerHTML += hours + ' HOURS ';
-			// document.getElementById(id).innerHTML += minutes + ' MINUTES ';
-			// document.getElementById(id).innerHTML += seconds + 'SECONDS';
 			document.getElementById('days').innerHTML = days;
 			document.getElementById('hours').innerHTML = hours;
 			document.getElementById('minutes').innerHTML = minutes;
