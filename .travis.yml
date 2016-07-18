@@ -1,0 +1,21 @@
+language: ruby
+rvm:
+- 2.2
+before_install:
+- ruby -v
+- gem install jekyll -v 3.1
+install:
+- rm -rf ~/.nvm && git clone https://github.com/creationix/nvm.git ~/.nvm && (cd ~/.nvm
+  && git checkout `git describe --abbrev=0 --tags`) && source ~/.nvm/nvm.sh && nvm
+  install $TRAVIS_NODE_VERSION
+- npm install --only=dev
+script:
+- gulp
+env:
+  global:
+  - TRAVIS_NODE_VERSION="0.12"
+  - TRAVIS_NODE_VERSION="4"
+  - secure: B8QFVfpC4iPOYb6djxQulKWDiAHLk3TWKEQkke4imTxY4rZ64Oo0nIuJzAl/l7SJL6UZYflFSvoKF1neUA9m1OmOG0wudfEC9ZlMqBQMH2KUICn0Yr2UaGg2C9R28oS0gJVGO8cGqA3hAHmlmZO1svPOOB/46Cii/Z0NSIREHK8jfsToEy2yNDp8d5ft+2ycdHs/Tve4ezlaHYEn/WiO07uQZDwU7ix5dETLwueE+ZSWTDAL2CaJ4j0qdDKovYusyrflioTafqSObK2hs4VpRAbkZD9Xf3hDC+GvTQHPQIXG+c9BAsWladd6xVu62o80/K5PxM29XqM4TXZZ08u5qfD2iV/5mN/DBBvhXYegr29JayqDACp7YBZlUeXtR6adPl16TmOoKiRGSEpBawLCsSH5dCs2ikURsg3nWMcaiJiF+QErtEDlZUc3pL4/n9CsDkpJ0HddgdGcYfnPF1MUqsLBTlXyllNRb6WPm/bhuDba3CoY0xxBPWd3fe3eBA4gBVOt3hO+ckMvCQLc8CpkXlE49whACpt7p2VjhpScgyXBV2tasOAbIGrL+rUQDoBPGQzV7MZeAEs+Rpb5dvhIK6Yz/LpAsuxYQ0INlEUx6gBegFt1glkEttAEGpcl1Gwduh0m6XDYi+2b4rh2mSLp5V6ngSGG+2FotLCon9+X7Mk=
+  - secure: nsCQVYqZI6xLJHt6s1mbFYvp4ItJByliQ/EXflPxOqm4ayTeoqxEPFk/R2Towbi8PiqSDgpcehr81Smy3qo0fBuae6ITVghXJHficBJyr3DD55pXcgNQ3QbjfAsGaTWRV1Gnm3AkyzowCJHk3ZKJaAFZu4T59YojLsaxaxyIf8t+SHw2ScqTklx+XY9FvLjeiaVYv7y1AkA5N0dd1snpRgemi+L7f8+hBlnHw9+2bLCy7cVUHpCD0gA4eKybHAo04wRv3XOoKibl+zLhjRLeIB624N0FTKWqkhNj9NaucbhVu4TCb/BVAkcnZza02hk1KERvcTsvoKPR0OEFlTGivkcs4ROQzsGgsNV1kYK7ZYU2qv3x106UldOgJB0IJnRQJ75hMkhKsXgbdXjT08EkBVG96LgZfEiS5a8JkPfFetqJ2tKYo3rXOXbtuizMT4QSj6XWUGTV2DXNairKh1J4w3ef+GPCaVH5TJPDuVI1KP3N8YAOh59OAvgy3f06ug5QNTH7xoW1gW5e6rKdCS/7hppXmuOiFvJCk5WkmXCm14lOXzVZbL4ZF8rfl2MOK19o+rV1WWOoiLv0hbAC7ovaBGzeQg770k+TR3scG0l7z9o7rc9vLLXParOHi6syWWZs5T5val+GDAcuMmgANGJwpHX2NerXc5TFLGFDcWp7qh0=
+  - secure: LEI+yEIdO2pewfxU+NR9K1XYRKt59MWionJ0TcvxelE0+VAch0a3lFQJewQEcZOxp3nDPBsTv731sDTyxZRK+cfhw+aUwSdW8+SU3+f4+JCbDQEDewjk2Ck56EMvPWMTH/OXSn4DILzJZAZN+J6iw+rfxtejtwGGnnCkOQtaR0rrjf3bWohpl8Srl6KW8ZNtCZ72LM33tvPo86e5rI8Q2S673PpuYz3pi/940glmUsUhe5rMEArpE/LTqvB06M80AKy9UOPVhw/T1Gim1NblgGobp9L06LBk4rBVBlcEbLcpSupto5SXD4mzNq6tiwfZWJN60bLh2gsIS9U8WeM5ZdDgtaAFGT9r2WDAqDMSnnjpwvIkZfrzEiXkK962utLtgyJrCkMVokj3NsJbYELRADKB1Yar2c5sK5eOEGjGrAI37N4LePT6X+iXjF3JykZwtF0kZm8rUnmHCZCnvs/GJpyZi2Htcf/s5/VCUkm6QtQo1hbRzH8Y+0z5alvdEcvZQFGg6J5O0RUZQYsfywS4tlhs1EtndPV1ZjQKpHCGYqrQ+EvrSW0J15THomr0Ghgw+Ns8ciiBqZx8YkzWLxCeOU85Dol93czmZjcXY1uTHp+/LitEGTCiFXOOQQYG0DMWcm+i23DvZ9aJ0i0UV1PO+IzOn2a1xrq+4BcXg2K6oiE=
+after_success: gulp deploy --host $FTP_HOST  --user $FTP_USER --password $FTP_PASSWORD
