@@ -33,12 +33,13 @@
 			background-color: rgba(0, 0, 0, 0.8);
 			font-weight: 300;
 			color: #e2e2e2;
-			padding-top: 20vh;
+			padding-top: 32px;
 			font-size: 16px;
 		}
 
 		p {
 			margin-top: 0;
+
 		}
 
 		.title-big {
@@ -55,10 +56,13 @@
 			padding-left: .5em;
 		}
 
-		@media (min-width: 760px) {
+		@media (min-width: 750px) {
+			p {
+				margin: 24px;
+			}
 			.countdown {
 				font-size: 24px;
-				padding-top: 15vh;
+				padding-top: 32px;
 			}
 			.breaker {
 				display: none;
@@ -93,7 +97,7 @@
 	</div>
 </body>
 <script type="text/javascript">
-	CountDownTimer('08/16/2016 09:30 AM', 'timer');
+	CountDownTimer('08/05/2016 09:30 AM', 'timer');
 
 	function CountDownTimer(dt, id) {
 		var end = new Date(dt);
