@@ -67,7 +67,7 @@ gulp.task('cleanremote', (cb) => {
 });
 
 gulp.task('imagemin', () => {
-  gulp.src('src/images/*')
+  gulp.src(['src/images/*','_ux/*.{png,jpeg,svg}'])
   .pipe(imagemin())
   .pipe(gulp.dest('src/images'));
 });
