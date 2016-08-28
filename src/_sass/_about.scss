@@ -1,10 +1,11 @@
 //about
 .about {
-  background: url(https://dl.dropboxusercontent.com/s/kp0tia5pyig3r31/ref-11.jpg?dl=0) no-repeat center center fixed;
+  background: url(../images/about-bg.jpg) no-repeat center center fixed;
   @media screen and (min-width: $breakpoint-md) {
-    background: url(https://dl.dropboxusercontent.com/s/d9uycqowgcx2k8y/ph-video-03.gif?dl=0) no-repeat center center fixed;
+    background: url(../images/about-bg.gif) no-repeat center center fixed;
     @include background-size(cover);
   }
+  min-height: 100vh;
 }
 
 .about-hero {

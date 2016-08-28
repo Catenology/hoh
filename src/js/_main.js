@@ -67,3 +67,4 @@ let main = () => {
   toggleNav();
 };
 main();
+svg4everybody(); 
