@@ -1,0 +1,98 @@
+//mixins
+@mixin hyperlink($type:brand) {
+  @if($type==brand) {
+    &,
+    &:visited {
+      color: $color-brand;
+    }
+    &:hover,
+    &:focus,
+    &.active {
+      color: lighten($color-brand, 20%);
+    }
+  }
+  @if ($type==accent) {
+    &,
+    &:visited {
+      color: $color-accent;
+    }
+    &:hover,
+    &:focus,
+    &.active {
+      color: lighten($color-accent, 20%);
+    }
+  }
+  @if ($type==white) {
+    &,
+    &:visited {
+      color: #fff;
+    }
+    &:hover,
+    &:focus,
+    &.active {
+      color: lighten($color-brand, 20%);
+    }
+  }
+}
+
+@mixin transform($transforms) {
+  -moz-transform: $transforms;
+  -o-transform: $transforms;
+  -ms-transform: $transforms;
+  -webkit-transform: $transforms;
+  transform: $transforms;
+}
+
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+
+@mixin background-size($size:cover) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+@mixin link-underline-expand($color:$color-brand) {
+  &,
+  &:visited {
+    color: $color;
+  }
+  &:before,
+  &:after {
+    content: "";
+    display: block;
+    position: absolute;
+    border-bottom: .1em solid $color;
+    margin-left: auto;
+    margin-right: auto;
+    top: 100%;
+    @include transition(all,
+    .3s,
+    ease);
+    left: 50%;
+    @include transform(translateX(-50%));
+    width: 0;
+  }
+  &:hover:before,
+  &:hover:after {
+    width: 100%;
+  }
+}
+
+@mixin vcenter-parent {
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+@mixin vcenter {
+  position: relative;
+  top: 50%;
+  transform: perspective(1px) translateY(-50%);
+}

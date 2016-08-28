@@ -1,0 +1,67 @@
+//news
+.news {
+  background: url(https://dl.dropboxusercontent.com/s/52uect5edhmnhoz/ref-14.png?dl=0) no-repeat center center fixed;
+  @include background-size(cover);
+}
+
+.timeline {
+  position: relative;
+  padding-left: $spacing-unit;
+  //vertical line
+  &:before {
+    position: absolute;
+    content: "";
+    top: 72px;
+    left: $spacing-unit;
+    width: 4px;
+    height: 100%;
+    background-color: $color-grey;
+  }
+}
+
+.timeline-story {
+  height: 120px;
+  position: relative;
+  border-bottom: 1px dotted fade-out($color-grey, .5);
+  .date,
+  .content {
+    display: inline-block;
+  }
+  .date {
+    vertical-align: middle;
+    text-align: center;
+    line-height: 120px;
+    white-space: nowrap;
+    .label {
+      background-color: $color-grey;
+      font-size: initial;
+      padding: 2px 4px;
+      color: $color-grey-dark;
+    }
+  }
+  .content {
+    padding-left: $spacing-unit;
+    .picture,
+    .text {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .picture {
+      width: 80px;
+      display: none;
+      @media screen and (min-width: $breakpoint-lg) {
+        display: inline-block;
+      }
+    }
+    .text {
+      padding-left: $spacing-unit;
+      &> * {
+        max-width: 60vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        line-height: 1;
+      }
+    }
+  }
+}

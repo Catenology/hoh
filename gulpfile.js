@@ -16,6 +16,7 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const download = require('gulp-download');
 
+//grab some environment variables
 let deployargs = minimist(process.argv.slice(2));
 let conn = ftp.create({
     host: deployargs.host,
@@ -27,10 +28,12 @@ let timestamp = Math.round(Date.now() / 1000);
 
 gulp.task('default', ['cachebust', 'zip']);
 
+//clean dynamiclly generated files
 gulp.task('clean', () => {
-    return del(['dist', 'src/css/_vendor', 'src/css/fonts', 'src/js/_vendor', 'src/css/vendor.min.css', 'src/js/vendor.min.js']);
+    return del(['dist', 'src/_site', 'src/css/_vendor', 'src/css/fonts', 'src/js/_vendor', 'src/css/vendor.min.css', 'src/js/vendor.min.js']);
 });
 
+//make a zip file for distribution and backup
 gulp.task('zip', ['build'], () => {
     let fszip = gulp.src('dist/_site/**')
         .pipe(zip(`v${timestamp}.zip`))
@@ -38,8 +41,9 @@ gulp.task('zip', ['build'], () => {
     return fszip;
 });
 
+//jekyll build the site
 gulp.task('build', ['scripts'], (cb) => {
-    //jekyll build the site
+
     exec(['jekyll b --source src --destination dist/_site'], function(err, stdout, stderr) {
         console.log(stdout);
         console.log(stderr);
@@ -49,33 +53,29 @@ gulp.task('build', ['scripts'], (cb) => {
 
 //compile stylesheet
 gulp.task('styles', ['download'], () => {
-  let vendor = gulp.src(['src/css/_vendor/*.css'])
-  .pipe(cleancss())
-  .pipe(concat('vendor.min.css'))
-  .pipe(gulp.dest('src/css'));
-  let main = gulp.src(['src/css/*.css'])
-  .pipe(cleancss())
-  .pipe(concat('main.min.css'))
-  .pipe(gulp.dest('src/css'));
-  return merge(vendor, main);
+    let vendor = gulp.src(['src/css/_vendor/*.css'])
+        .pipe(cleancss())
+        .pipe(concat('vendor.min.css'))
+        .pipe(gulp.dest('src/css'));
+    return vendor;
 });
 
 //compile javascript
 gulp.task('scripts', ['styles'], () => {
-  let vendor = gulp.src(['src/js/_vendor/*.js'])
-  .pipe(uglify())
-  .pipe(concat('vendor.min.js'))
-  .pipe(gulp.dest('src/js'));
+    let vendor = gulp.src(['src/js/_vendor/*.js'])
+        .pipe(uglify())
+        .pipe(concat('vendor.min.js'))
+        .pipe(gulp.dest('src/js'));
 
-  let main = gulp.src(['src/js/_main.js'])
-  .pipe(babel({
-      presets: ['es2015']
-  }))
-  .pipe(uglify())
-  .pipe(rename('main.min.js'))
-  .pipe(gulp.dest('src/js'));
+    let main = gulp.src(['src/js/_main.js'])
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(uglify())
+        .pipe(rename('main.min.js'))
+        .pipe(gulp.dest('src/js'));
 
-  return merge(vendor, main);
+    return merge(vendor, main);
 });
 
 gulp.task('download', ['clean'], () => {
@@ -95,7 +95,9 @@ gulp.task('download', ['clean'], () => {
 
     return merge(catfwcss, catfwjs, jquery);
 });
+
 //add timestamp to static assets to bust cache
+//not the best solution, will use MD5 later
 gulp.task('cachebust', ['build'], () => {
     let fscachebust = gulp.src(['dist/_site/**/*.html', 'dist/_site/**/*.md', 'dist/_site/**/*.markdown'])
         .pipe(replace(/@@hash/g, timestamp))
@@ -120,6 +122,7 @@ gulp.task('cleanremote', (cb) => {
     });
 });
 
+//compress images
 gulp.task('imagemin', () => {
     gulp.src(['src/images/*', '_ux/*.{png,jpeg,svg}'])
         .pipe(imagemin())

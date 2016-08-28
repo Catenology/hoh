@@ -1,20 +1,21 @@
 <!DOCTYPE html>
 <html>
 
-  {% include head.html %}
+{% include head.html %}
 
-  <body>
+<body>
 
     {% include header.html %}
-
-    <div class="page-content">
-      <div class="wrapper">
+    <div class="body">
+        <div id="top"></div>
         {{ content }}
-      </div>
     </div>
 
     {% include footer.html %}
 
-  </body>
+    <a href="#top" class="go-to-top"><i class="catif catif-chevron-up"></i><span class="label">Go to top</span></a>
+    <script src="{{ " /js/vendor.min.js?v=1.0.@@hash " | prepend: site.baseurl }}" charset="utf-8"></script>
+    <script src="{{ " /js/main.min.js?v=1.0.@@hash " | prepend: site.baseurl }}" charset="utf-8"></script>
+</body>
 
 </html>

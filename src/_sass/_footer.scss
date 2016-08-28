@@ -1,0 +1,82 @@
+//footer
+.footer {
+  text-align: center;
+  color: #fff;
+  position: relative;
+  a {
+    color: #fff;
+  }
+}
+
+ul.social-list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  &>li {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    line-height: 48px;
+    text-align: center;
+    background-color: $color-brand;
+    border-radius: 50%;
+    font-size: 24px;
+    cursor: pointer;
+    margin: $spacing-unit-sm;
+    @include transition(all,
+    ease,
+    .3s);
+    a {
+      color: #fff;
+    }
+    &:hover,
+    &:focus {
+      background-color: $color-accent;
+      a {
+        color: $color-brand;
+      }
+    }
+  }
+}
+
+.footer-top {
+  background-color: $color-grey-dark;
+  padding: $spacing-unit;
+  .address {
+    margin-top: $spacing-unit;
+  }
+}
+
+.footer-bottom {
+  background-color: $color-brand;
+  padding: $spacing-unit;
+  a {
+    @include link-underline-expand($color-accent);
+  }
+}
+
+//go-to-top
+.go-to-top {
+  position: fixed;
+  display: block;
+  right: 0;
+  bottom: 0;
+  background-color: $color-accent;
+  padding: $spacing-unit-sm $spacing-unit;
+  z-index: 1000;
+  &,
+  &:visited {
+    color: $color-brand;
+  }
+  &:hover,
+  &:focus {
+    background-color: darken($color-accent, 20%);
+    color: darken($color-brand, 20%);
+  }
+  .label {
+    display: none;
+    @media screen and (min-width: $breakpoint-md) {
+      display: initial;
+    }
+  }
+}

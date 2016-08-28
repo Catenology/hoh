@@ -1,0 +1,57 @@
+//about
+.about {
+  background: url(https://dl.dropboxusercontent.com/s/kp0tia5pyig3r31/ref-11.jpg?dl=0) no-repeat center center fixed;
+  @media screen and (min-width: $breakpoint-md) {
+    background: url(https://dl.dropboxusercontent.com/s/d9uycqowgcx2k8y/ph-video-03.gif?dl=0) no-repeat center center fixed;
+    @include background-size(cover);
+  }
+}
+
+.about-hero {
+  width: 100%;
+  margin-bottom: $spacing-unit-xl;
+}
+
+.about-history {
+  display: none;
+  @media screen and (min-width: $breakpoint-sm) {
+    display: block;
+  }
+}
+
+.about {
+  .about-button {
+    margin-top: $spacing-unit-lg;
+    margin-bottom: $spacing-unit-lg;
+  }
+  .business-info {
+    margin: 0;
+    height: 180px;
+  }
+}
+
+
+
+.location,
+.hours {
+  background-color: $color-brand;
+  a {
+    color: #fff;
+    &:hover {
+      color: $color-accent
+    }
+  }
+}
+
+.status {
+  background-color: $color-accent;
+  color: $color-grey-dark;
+}
+
+.info-title {
+  text-transform: uppercase;
+}
+
+.info-body {
+  font-size: initial;
+}

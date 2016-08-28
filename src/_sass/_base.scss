@@ -1,0 +1,97 @@
+//base
+html,
+body {
+  padding: 0;
+  margin: 0;
+  color: #fff!important;
+  &:selection,
+  &:-moz-selection {
+    background: #ffb7b7;
+  }
+  &,
+  * {
+    box-sizing: border-box;
+  }
+  ::selection {
+    background: fade-out($color-brand, .5);
+    /* WebKit/Blink Browsers */
+  }
+  ::-moz-selection {
+    background: fade-out($color-brand, .5);
+    /* Gecko Browsers */
+  }
+}
+
+section {
+  @include background-size(cover);
+  position: relative;
+  @include transition(background-image,
+  1s);
+  font-size: 20px;
+  //dark mask
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: fade-out(#000, .15);
+  }
+  &>.container {
+    padding-top: 96px;
+    padding-bottom: $spacing-unit-xl;
+    &>h1 {
+      font-size: 2em;
+      margin-bottom: $spacing-unit-xl;
+    }
+  }
+}
+
+.btn-ghost.cta {
+  line-height: 1.5em;
+  border-color: #fff;
+  color: #fff;
+  &:hover,
+  &:focus,
+  &.active {
+    border-color: lighten($color-brand, 20%);
+    color: #fff;
+    background-color: $color-brand;
+  }
+}
+
+//shared
+.show-above-xs {
+  display: none;
+  @media screen and (min-width: $breakpoint-xs) {
+    display: block;
+  }
+}
+
+.show-above-sm {
+  display: none;
+  @media screen and (min-width: $breakpoint-sm) {
+    display: block;
+  }
+}
+
+.show-above-md {
+  display: none;
+  @media screen and (min-width: $breakpoint-md) {
+    display: block;
+  }
+}
+
+.vcenter-parent {
+  @include vcenter-parent;
+}
+
+.vcenter {
+  @include vcenter;
+}
+
+i {
+  & ~ .label {
+    margin-left: $spacing-unit-sm;
+  }
+}

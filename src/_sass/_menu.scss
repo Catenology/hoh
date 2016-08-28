@@ -1,0 +1,49 @@
+//menu
+.menu {
+  background: url(https://dl.dropboxusercontent.com/s/s4yd5wqi16q2iw3/ref-38.jpg?dl=0) no-repeat center center fixed;
+  @include background-size(cover);
+}
+
+.categorys {
+  font-size: 0; //remove space between children
+  text-align: center;
+  padding: $spacing-unit-lg;
+  background-color: $color-brand;
+}
+
+.category {
+  font-size: initial; //restore font size
+  margin: 0;
+  position: relative;
+  @media screen and (min-width: $breakpoint-md) {
+    display: inline-block;
+    width: 25%;
+    &:nth-child(n+5) {
+      margin-top: $spacing-unit-xl;
+    }
+  }
+  &:hover {
+    figcaption {
+      height: 100%;
+    }
+  }
+  figcaption {
+    position: absolute;
+    display: block;
+    height: 0;
+    overflow: hidden;
+    width: 100%;
+    background-color: fade-out(#000, .5);
+    left: 0;
+    bottom: 0;
+    @include vcenter-parent;
+    @include transition(height,
+    ease,
+    .3s);
+    a {
+      @include link-underline-expand(#fff);
+      @include vcenter;
+      font-size: 1.5em;
+    }
+  }
+}
