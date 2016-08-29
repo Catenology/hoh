@@ -36,17 +36,6 @@ let main = () => {
         });
     };
 
-    let scrollNav = () => {
-        let $window = $(window);
-        let navbar = $('.navbar');
-        $window.on('scroll', () => {
-            if ($window.scrollTop() > 100) {
-                navbar.fadeIn(300);
-            } else {
-                navbar.fadeOut(300);
-            }
-        });
-    };
 
     let scrollGoToTop = () => {
         let $window = $(window);
@@ -60,7 +49,6 @@ let main = () => {
         });
     };
     smoothScroll();
-    scrollNav();
     scrollGoToTop();
     toggleNav();
 
