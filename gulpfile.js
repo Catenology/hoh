@@ -92,8 +92,11 @@ gulp.task('download', ['clean'], () => {
     //jquery
     let jquery = download('https://code.jquery.com/jquery-3.1.0.min.js')
         .pipe(gulp.dest('src/js/_vendor/'));
+    let svg4everybody = download('https://raw.githubusercontent.com/jonathantneal/svg4everybody/master/dist/svg4everybody.min.js')
+        .pipe(gulp.dest('src/js/_vendor/'));
 
-    return merge(catfwcss, catfwjs, jquery);
+
+    return merge(catfwcss, catfwjs, jquery, svg4everybody);
 });
 
 //add timestamp to static assets to bust cache

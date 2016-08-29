@@ -15,8 +15,8 @@
   font-size: initial; //restore font size
   margin: 0;
   position: relative;
+  display: inline-block;
   @media screen and (min-width: $breakpoint-md) {
-    display: inline-block;
     width: 25%;
     &:nth-child(n+5) {
       margin-top: $spacing-unit-xl;
