@@ -1,0 +1,9 @@
+.menupage {
+  li {
+    &>span {
+      &:not(:first-child) {
+        padding-left: $spacing-unit;
+      }
+    }
+  }
+}
