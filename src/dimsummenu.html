@@ -1,0 +1,15 @@
+---
+layout: page
+title: "House of Hong Dinner Dim Sum Menu"
+permalink: /dimsummenu
+---
+<div class="menupage">
+  {% assign dimsummenu = site.menus | where:"name","dimsummenu" | first %}
+  {% assign dimsums = dimsummenu.items | where:"type","dimsum" | sort: "id" %}
+  <h2><span class="menu-category-ch">下午茶點心</span><span class="menu-category-en">Evening Dimsum</span></h2>
+  <ul class="list-unstyled">
+    {% for dimsum in dimsums %}
+    <li><span class="menu-item-id">{{ dimsum.id }}</span><span class="menu-item-name-ch">{{ dimsum.name_ch }}</span><span class="menu-item-name-en">{{ dimsum.name_en }}</span> <span class="menu-item-price">{{ dimsum.price }}</span></li>
+    {% endfor %}
+  </ul>
+</div>

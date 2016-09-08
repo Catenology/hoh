@@ -1,0 +1,48 @@
+---
+layout: page
+title: "House of Hong Cantonens Specialty Menu"
+permalink: /cantonesemenu
+---
+<div class="menupage">
+  {% assign fullmenu = site.menus | where:"name","fullmenu" | first %}
+  {% assign soups = fullmenu.items | where:"type","soup" | sort: "id" %}
+  {% assign meats = fullmenu.items | where:"type","meat" | sort: "id" %}
+  {% assign vegetables = fullmenu.items | where:"type","vegetable" | sort: "id" %}
+  <h2><span class="menu-category-ch">精品廣東菜</span><span class="menu-category-en">Cantonens Specialty</span></h2>
+  <h3><span class="menu-category-ch">湯類</span><span class="menu-category-en">Soup</span></h3>
+  <ul class="list-unstyled">
+    {% for soup in soups %}
+    <li><span class="menu-item-id">{{ soup.id }}</span><span class="menu-item-name-ch">{{ soup.name_ch }}</span><span class="menu-item-name-en">{{ soup.name_en }}</span> <span class="menu-item-price">
+      {% if soup.price > 0 %}
+      {{ soup.price }}
+      {% else %}
+      *Seasonal prices (時價)
+      {% endif %}
+    </span></li>
+    {% endfor %}
+  </ul>
+  <h3><span class="menu-category-ch">肉類</span><span class="menu-category-en">Meat</span></h3>
+  <ul class="list-unstyled">
+    {% for meat in meats %}
+    <li><span class="menu-item-id">{{ meat.id }}</span><span class="menu-item-name-ch">{{ meat.name_ch }}</span><span class="menu-item-name-en">{{ meat.name_en }}</span> <span class="menu-item-price">
+      {% if meat.price > 0 %}
+      {{ meat.price }}
+      {% else %}
+      *Seasonal prices (時價)
+      {% endif %}
+    </span></li>
+    {% endfor %}
+  </ul>
+  <h3><span class="menu-category-ch">蔬菜類</span><span class="menu-category-en">Vegetable</span></h3>
+  <ul class="list-unstyled">
+    {% for vegetable in vegetables %}
+    <li><span class="menu-item-id">{{ vegetable.id }}</span><span class="menu-item-name-ch">{{ vegetable.name_ch }}</span><span class="menu-item-name-en">{{ vegetable.name_en }}</span> <span class="menu-item-price">
+      {% if vegetable.price > 0 %}
+      {{ vegetable.price }}
+      {% else %}
+      *Seasonal prices (時價)
+      {% endif %}
+    </span></li>
+    {% endfor %}
+  </ul>
+</div>

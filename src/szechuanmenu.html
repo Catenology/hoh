@@ -1,0 +1,21 @@
+---
+layout: page
+title: "House of Hong Szechuan Woks Menu"
+permalink: /szechuanmenu
+---
+<div class="menupage">
+  {% assign fullmenu = site.menus | where:"name","fullmenu" | first %}
+  {% assign szechuans = fullmenu.items | where:"type","szechuan" | sort: "id" %}
+  <h2><span class="menu-category-ch">特別推薦川菜</span><span class="menu-category-en">Szechuan Wok</span></h2>
+  <ul class="list-unstyled">
+    {% for szechuan in szechuans %}
+    <li><span class="menu-item-id">{{ szechuan.id }}</span><span class="menu-item-name-ch">{{ szechuan.name_ch }}</span><span class="menu-item-name-en">{{ szechuan.name_en }}</span> <span class="menu-item-price">
+      {% if szechuan.price > 0 %}
+      {{ szechuan.price }}
+      {% else %}
+      *Seasonal prices (時價)
+      {% endif %}
+    </span></li>
+    {% endfor %}
+  </ul>
+</div>
