@@ -4,6 +4,9 @@
       &:not(:first-child) {
         padding-left: $spacing-unit;
       }
+      &.menu-item-spicy {
+        padding:0;
+      }
     }
   }
 }

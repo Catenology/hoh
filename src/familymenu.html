@@ -4,5 +4,26 @@ title: "House of Hong Family Dinner Set Menu"
 permalink: /familymenu
 ---
 <div class="menupage">
-  <h2>Coming soon...</h2>
+  {% assign dinnergroup = site.menus | where:"name","dinnergroup" | first %}
+  {% for menu in dinnergroup.menus %}
+  <h2><span class="menu-category-ch">{{ menu.title_ch }}</span> <span class="menu-category-en">{{ menu.title_en }}</span></h2>
+  <h3>{{ menu.price }}</h3>
+  {% if menu.notes %}
+  <p>*
+    {{ menu.notes }}
+  </p>
+  {% endif %}
+  <ul class="list-unstyled">
+    {% assign items = menu.items %}
+    {% for item in items %}
+    <li><span class="menu-item-id">{{ item.id }}</span><span class="menu-item-name-ch">{{ item.name_ch }}</span><span class="menu-item-name-en">{{ item.name_en }}</span>
+      {% if item.spicy %}
+      {% for star in (1...item.spicy) %}
+      <span class="menu-item-spicy">*</span>
+      {% endfor %}
+      {% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% endfor %}
 </div>

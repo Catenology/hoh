@@ -48,10 +48,22 @@ let main = () => {
             }
         });
     };
+
+    let openStatus = (target, range) => {
+        let currentTime = new Date();
+        let currentTimeNumeric = parseFloat(currentTime.getHours()) + parseFloat((currentTime.getMinutes() / 60));
+        let rangeNumeric = [parseFloat(range.split('-')[0].split(':')[0]) + parseFloat((range.split('-')[0].split(':')[1] / 60)), parseFloat(range.split('-')[1].split(':')[0]) + parseFloat((range.split('-')[1].split(':')[1] / 60))];
+        if (currentTimeNumeric < rangeNumeric[0] || currentTimeNumeric > rangeNumeric[1]) {
+            target.text('Closed now');
+        } else {
+            target.text("Open now");
+        }
+    };
+
     smoothScroll();
     scrollGoToTop();
     toggleNav();
-
     svg4everybody();
+    openStatus($('#openStatus'),'9:30-22:00');
 };
 main();

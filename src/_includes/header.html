@@ -1,26 +1,26 @@
 <header class="header">
     <div class="navbar">
-        <a href="{{ site.url }}#top" class="nav-brand vcenter-parent" title="House of Hong">
+        <a href="{{ site.baseurl | prepend: site.url }}#top" class="nav-brand vcenter-parent" title="House of Hong">
           <svg role="img" title="House of Hong Logo" class="img-responsive vcenter logo-full">
-              <use xlink:href="{{ site.url }}/images/hohlogos.svg#logolandscape" />
+              <use xlink:href="{{ site.baseurl | prepend: site.url }}/images/hohlogos.svg#logolandscape" />
           </svg>
 
         </a>
         <ul class="nav-menu" role="menu">
-            <li role="menu-item"><a href="{{ site.url }}#about">Book a table</a></li>
-            <li role="menu-item"><a href="{{ site.url }}#menu">Explore our menu</a></li>
-            <li role="menu-item"><a href="{{ site.url }}#event">Event catering</a></li>
-            <li role="menu-item"><a href="{{ site.url }}#news">What's new</a></li>
+            <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#about">Book a table</a></li>
+            <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#menu">Explore our menu</a></li>
+            <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#event">Event catering</a></li>
+            <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#news">What's new</a></li>
         </ul>
         <div class="nav-hamburger js-nav-trigger" data-target="#jsNavTarget" title="Expand navigation"><i class="js-nav-trigger-icon catif catif-hamburger"></i></div>
     </div>
     <div class="nav-overlay js-nav vcenter-parent" id="jsNavTarget">
         <nav class="vcenter">
             <ul class="nav-menu" role="menu">
-                <li role="menu-item"><a href="{{ site.url }}#about" class="text-feature">Book a table</a></li>
-                <li role="menu-item"><a href="{{ site.url }}#menu" class="text-feature">Explore our menu</a></li>
-                <li role="menu-item"><a href="{{ site.url }}#event" class="text-feature">Event catering</a></li>
-                <li role="menu-item"><a href="{{ site.url }}#news" class="text-feature">What's new</a></li>
+                <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#about" class="text-feature">Book a table</a></li>
+                <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#menu" class="text-feature">Explore our menu</a></li>
+                <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#event" class="text-feature">Event catering</a></li>
+                <li role="menu-item"><a href="{{ site.baseurl | prepend: site.url }}#news" class="text-feature">What's new</a></li>
             </ul>
         </nav>
     </div>

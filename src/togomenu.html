@@ -3,6 +3,76 @@ layout: page
 title: "House of Hong Dimsum To-go Menu"
 permalink: /togomenu
 ---
+
 <div class="menupage">
-  <h2>Coming soon...</h2>
+  {% assign fullmenu = site.menus | where:"name","fullmenu" | first %}
+  {% assign appetizers = fullmenu.items | where:"type","appetizer" | sort: "id" %}
+  <h2><span class="menu-category-ch">前菜</span><span class="menu-category-en">Appetizers</span></h2>
+  <ul class="list-unstyled">
+    {% for appetizer in appetizers %}
+    <li><span class="menu-item-id">{{ appetizer.id }}</span><span class="menu-item-name-ch">{{ appetizer.name_ch }}</span><span class="menu-item-name-en">{{ appetizer.name_en }}</span> <span class="menu-item-price">{{ appetizer.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign carbappetizers = fullmenu.items | where:"type","carbappetizer" | sort: "id" %}
+  <h2><span class="menu-category-ch">麵點前菜</span><span class="menu-category-en">Buns and Noodles Appetizers</span></h2>
+  <ul class="list-unstyled">
+    {% for carbappetizer in carbappetizers %}
+    <li><span class="menu-item-id">{{ carbappetizer.id }}</span><span class="menu-item-name-ch">{{ carbappetizer.name_ch }}</span><span class="menu-item-name-en">{{ carbappetizer.name_en }}</span> <span class="menu-item-price">{{ carbappetizer.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign soups = fullmenu.items | where:"type","soup" | sort: "id" %}
+  <h2><span class="menu-category-ch">湯類</span><span class="menu-category-en">Soup</span></h2>
+  <ul class="list-unstyled">
+    {% for soup in soups  %}
+    <li><span class="menu-item-id">{{ soup.id }}</span><span class="menu-item-name-ch">{{ soup.name_ch }}</span><span class="menu-item-name-en">{{ soup.name_en }}</span> <span class="menu-item-price">{{ soup.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign szechuans = fullmenu.items | where:"type","szechuan" | sort: "id" %}
+  <h2><span class="menu-category-ch">特別推薦川菜</span><span class="menu-category-en">Szechuan Heaven</span></h2>
+  <ul class="list-unstyled">
+    {% for szechuan in szechuans  %}
+    <li><span class="menu-item-id">{{ szechuan.id }}</span><span class="menu-item-name-ch">{{ szechuan.name_ch }}</span><span class="menu-item-name-en">{{ szechuan.name_en }}</span> <span class="menu-item-price">
+      {% if szechuan.price > 0 %}
+      {{ szechuan.price }}
+      {% else %}
+      *Seasonal prices (時價)
+      {% endif %}
+    </span></li>
+    {% endfor %}
+  </ul>
+  {% assign vegetables = fullmenu.items | where:"type","vegetable" | sort: "id" %}
+  <h2><span class="menu-category-ch">蔬菜類</span><span class="menu-category-en">Vegetable</span></h2>
+  <ul class="list-unstyled">
+    {% for vegetable in vegetables  %}
+    <li><span class="menu-item-id">{{ vegetable.id }}</span><span class="menu-item-name-ch">{{ vegetable.name_ch }}</span><span class="menu-item-name-en">{{ vegetable.name_en }}</span> <span class="menu-item-price">{{ vegetable.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign eggfooyoungs = fullmenu.items | where:"type","eggfooyoung" | sort: "id" %}
+  <h2><span class="menu-category-ch">蛋芙蓉</span><span class="menu-category-en">Egg Foo Young</span></h2>
+  <ul class="list-unstyled">
+    {% for eggfooyoung in eggfooyoungs  %}
+    <li><span class="menu-item-id">{{ eggfooyoung.id }}</span><span class="menu-item-name-ch">{{ eggfooyoung.name_ch }}</span><span class="menu-item-name-en"> {{ eggfooyoung.name_en }}</span> <span class="menu-item-price">{{ eggfooyoung.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign seafoods = fullmenu.items | where:"type","seafood" | sort: "id" %}
+  <h2><span class="menu-category-ch">海鮮</span><span class="menu-category-en">Seafood</span></h2>
+  <ul class="list-unstyled">
+    {% for seafood in seafoods  %}
+    <li><span class="menu-item-id">{{ seafood.id }}</span><span class="menu-item-name-ch">{{ seafood.name_ch }}</span><span class="menu-item-name-en">{{ seafood.name_en }}</span> <span class="menu-item-price">{{ seafood.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign meats = fullmenu.items | where:"type","meat" | sort: "id" %}
+  <h2><span class="menu-category-ch">肉類</span><span class="menu-category-en">Pork, Chicken, Beef</span></h2>
+  <ul class="list-unstyled">
+    {% for meat in meats  %}
+    <li><span class="menu-item-id">{{ meat.id }}</span><span class="menu-item-name-ch">{{ meat.name_ch }}</span><span class="menu-item-name-en"> {{ meat.name_en }}</span><span class="menu-item-price">{{ meat.price }}</span></li>
+    {% endfor %}
+  </ul>
+  {% assign carbs = fullmenu.items | where:"type","carb" | sort: "id" %}
+  <h2><span class="menu-category-ch">主食</span><span class="menu-category-en">Rice and Noodle Entrées</span></h2>
+  <ul class="list-unstyled">
+    {% for carb in carbs  %}
+    <li><span class="menu-item-id">{{ carb.id }}</span><span class="menu-item-name-ch">{{ carb.name_ch }}</span><span class="menu-item-name-en">{{ carb.name_en }}</span><span class="menu-item-price">{{ carb.price }}</span></li>
+    {% endfor %}
+  </ul>
 </div>
