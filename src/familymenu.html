@@ -18,7 +18,7 @@ permalink: /familymenu
     {% for item in items %}
     <li><span class="menu-item-id">{{ item.id }}</span><span class="menu-item-name-ch">{{ item.name_ch }}</span><span class="menu-item-name-en">{{ item.name_en }}</span>
       {% if item.spicy %}
-      {% for star in (1...item.spicy) %}
+      {% for star in item.spicy %}
       <span class="menu-item-spicy">*</span>
       {% endfor %}
       {% endif %}

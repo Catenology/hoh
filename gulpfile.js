@@ -4,7 +4,6 @@ const gulp = require('gulp');
 const del = require('del');
 const util = require('gulp-util');
 const zip = require('gulp-zip');
-const ftp = require('vinyl-ftp');
 const minimist = require('minimist');
 const rename = require('gulp-rename');
 const exec = require('child_process').exec;
@@ -16,14 +15,6 @@ const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
 const download = require('gulp-download');
 
-//grab some environment variables
-let deployargs = minimist(process.argv.slice(2));
-let conn = ftp.create({
-    host: deployargs.host,
-    user: deployargs.user,
-    password: deployargs.password,
-    log: util.log
-});
 let timestamp = Math.round(Date.now() / 1000);
 
 gulp.task('default', ['cachebust', 'zip']);
@@ -52,7 +43,7 @@ gulp.task('build', ['scripts'], (cb) => {
 });
 
 //compile stylesheet
-gulp.task('styles', ['download'], () => {
+gulp.task('styles', ['libs'], () => {
     let vendor = gulp.src(['src/css/_vendor/*.css'])
         .pipe(cleancss())
         .pipe(concat('vendor.min.css'))
@@ -78,15 +69,15 @@ gulp.task('scripts', ['styles'], () => {
     return merge(vendor, main);
 });
 
-gulp.task('download', ['clean'], () => {
+gulp.task('libs', ['clean'], () => {
     //catfw
-    let catfwcss = download('http://catfw.catenology.com/files/catfw.min.css')
+    let catfwcss = gulp.src('src/assets/catfw.min.css')
         .pipe(gulp.dest('src/css/_vendor/'));
 
-    let catfwfonts = download(['http://catfw.catenology.com/files/fonts/catif.ttf', 'http://catfw.catenology.com/files/fonts/catif.woff', 'http://catfw.catenology.com/files/fonts/catif.eot', 'http://catfw.catenology.com/files/fonts/catif.svg'])
+    let catfwfonts = gulp.src(['src/assets/fonts/catif.ttf', 'src/assets/fonts/catif.woff', 'src/assets/fonts/catif.eot', 'src/assets/fonts/catif.svg'])
         .pipe(gulp.dest('src/css/fonts'));
 
-    let catfwjs = download('http://catfw.catenology.com/files/catfw.min.js')
+    let catfwjs = gulp.src('src/assets/catfw.min.js')
         .pipe(gulp.dest('src/js/_vendor/'));
 
     //jquery
@@ -106,23 +97,6 @@ gulp.task('cachebust', ['build'], () => {
         .pipe(replace(/@@hash/g, timestamp))
         .pipe(gulp.dest('dist/_site'))
     return fscachebust;
-});
-
-//ftp deployment
-gulp.task('deploy', ['cleanremote'], () => {
-    let globs = ['dist/_site/**/*.*'];
-    let fsdeploy = gulp.src(globs, {
-            buffer: false
-        })
-        .pipe(conn.dest('.'));
-    return fsdeploy;
-})
-
-//clean remote folder on ftp server
-gulp.task('cleanremote', (cb) => {
-    return conn.rmdir('.', function(err) {
-        cb();
-    });
 });
 
 //compress images
